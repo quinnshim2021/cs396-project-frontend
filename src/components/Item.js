@@ -21,10 +21,6 @@ const Item = (id, order) => {
     useEffect(() => {
         if (anime && anime.Title){
             // get anime cover here
-            GoogleImageSearch.searchImage("cats")
-                .then((res) => {
-                    console.log(res); // This will return array of image URLs
-                })
         } else {
             setImage(error);
         }
