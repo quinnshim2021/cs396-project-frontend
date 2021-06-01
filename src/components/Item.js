@@ -1,45 +1,52 @@
 import { useEffect, useState } from "react";
 import error from './../error.jpeg';
-import loadingI from './../loading.gif';
+import loadingGif from './../loading.gif';
 
-const Item = (id, order) => {
+const Item = ({id, handler}) => {
     const [anime, setAnime] = useState({});
     const [image, setImage] = useState(error);
     const [loading, setLoading] = useState(true);
-    const loadingImage = loadingI;
+    const loadingImage = loadingGif;
+    const BaseUrl = /* "http://localhost:8081/anime/"; // */"https://anime-recommendator.herokuapp.com/anime/"
+    const BaseCoverUrl = /* "http://localhost:8081/cover/"; //  */"https://anime-recommendator.herokuapp.com/cover/"
 
-    /* get the new anime from the db */
+    /* get anime */
     useEffect(() => {
-        fetch(`https://anime-recommendator.herokuapp.com/anime/${id.id}`)
-            .then(res => res.json())
-            .then((result) => {
-                    setAnime(result)
-                }
-            )
-            .catch(() => {
-                setImage(error);
-            })
-    }, [id]);
+        (async() => {
+            const BASEURL = BaseUrl
+            fetch(BASEURL + id)
+                .then(res => res.json())
+                .then((result) => {
+                        setAnime(result)
+                    }
+                )
+                .catch(() => {
+                    setAnime(error);
+                })
+
+        })();
+    }, [id])
 
     /* get the image for the anime */
     useEffect(() => {
         setLoading(true);
         if (anime && anime.Title){
-            const words = anime.Title.split(" ");
-            let query = "";
-            words.map((word) => query += word + "+")
-            const BASEURL = "https://anime-recommendator.herokuapp.com/cover/";
-            // const BASEURL = "http://localhost:8081/cover/";
-            fetch(BASEURL + query)
-                .then(res => res.json())
-                .then((result) => {
-                    setImage(result);
-                    setLoading(false);
-                })
-                .catch(() => {
-                    setImage(error);
-                    setLoading(false);
-                })
+            (async() => {
+                const words = anime.Title.split(" ");
+                let query = "";
+                words.map((word) => query += word + "+")
+                const BASEURL = BaseCoverUrl;
+                fetch(BASEURL + query)
+                    .then(res => res.json())
+                    .then((result) => {
+                        setImage(result);
+                        setLoading(false);
+                    })
+                    .catch(() => {
+                        setImage(error);
+                        setLoading(false);
+                    })
+            })();
         } else {
             setImage(error);
             setLoading(false);
@@ -47,7 +54,7 @@ const Item = (id, order) => {
     }, [anime])
 
     return (
-      <div className="Item">
+      <div className="Item" onClick={(e) => {e.preventDefault(); handler(anime)}}>
           {
               loading ?
                 <img 

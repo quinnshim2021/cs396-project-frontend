@@ -1,21 +1,16 @@
 import Item from "./Item";
-import {useState} from "react"
+import { useEffect, useState } from "react"
 
-
-// to do:
-    // where should we check which one was clicked on/what information to show? 
-    // we could fetch everything here and pass only the image url to item so we can do all of the work in here
-    // update preferences
-    // pass state up App so it can give preferences to Recommended (can pass event handler and copy and paste what we have here)
-
-const Quiz = () => {
+const Quiz = ({ handler }) => {
     const [show1, setShow1] = useState("60aae2bc4796232c58097617");
     const [show2, setShow2] = useState("60aae2bc4796232c58097618");
     const [status, setStatus] = useState(0);
-
+    const [anime, setAnime] = useState([]); /* state with anime for results */
+    
     const newIds = () => {
         // generate random show id
         // 617 through c31
+        
         let new1 = 0;
         let new2 = 0;
         const base = '60aae2bc4796232c58097';
@@ -39,17 +34,23 @@ const Quiz = () => {
         setStatus(status + 1);
     }
 
+    useEffect(() => {
+        if (status === 5){
+            handler(anime);
+        }
+    }, [status])
+
     return (
       <div className="Quiz">
         {
             status < 5 ? /* let them choose 5 shows */
                 <div className="Quiz">
-                    <div onClick={(e) => newIds()}>
-                        <Item id={show1}/>
+                    <div onClick={(e) => newIds(e)}>
+                        <Item id={show1} handler={(res) => setAnime(anime.concat(res))} />
                     </div>
                     <p>OR</p>
-                    <div onClick={(e) => newIds()}>
-                        <Item id={show2}/>
+                    <div onClick={(e) => newIds(e)}>
+                        <Item id={show2} handler={(res) => setAnime(anime.concat(res))} />
                     </div>
                 </div>
             :
