@@ -7,8 +7,8 @@ const Item = ({id, handler}) => {
     const [image, setImage] = useState(error);
     const [loading, setLoading] = useState(true);
     const loadingImage = loadingGif;
-    const BaseUrl = /* "http://localhost:8081/anime/"; // */"https://anime-recommendator.herokuapp.com/anime/"
-    const BaseCoverUrl = /* "http://localhost:8081/cover/"; //  */"https://anime-recommendator.herokuapp.com/cover/"
+    const BaseUrl = "http://localhost:8081/anime/"; //"https://anime-recommendator.herokuapp.com/anime/"
+    const BaseCoverUrl = "http://localhost:8081/cover/"; // "https://anime-recommendator.herokuapp.com/cover/"
 
     /* get anime */
     useEffect(() => {
@@ -32,7 +32,7 @@ const Item = ({id, handler}) => {
         setLoading(true);
         if (anime && anime.Title){
             (async() => {
-                const words = anime.Title.split(" ");
+                const words = anime.Title.replace(/[/]/g, " ").split(" ");
                 let query = "";
                 words.map((word) => query += word + "+")
                 const BASEURL = BaseCoverUrl;
@@ -54,17 +54,17 @@ const Item = ({id, handler}) => {
     }, [anime])
 
     return (
-      <div className="Item" onClick={(e) => {e.preventDefault(); handler(anime)}}>
+      <div className="Item" onClick={(e) => {e.preventDefault(); handler(anime)}}> {/* once an anime is clicked, send it back to Quiz's handler */}
           {
               loading ?
                 <img 
                     src={loadingImage}
-                    alt="if you're seeing this then oops"
+                    alt="if you're seeing this then oops, please reload the page"
                     />
               :
               <img 
                 src={image}
-                alt="if you're seeing this then oops"
+                alt="if you're seeing this then oops, please reload the page"
                 />
           }
       </div>

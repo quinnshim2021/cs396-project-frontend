@@ -1,40 +1,42 @@
 import Item from "./Item";
 import { useEffect, useState } from "react"
 
+
+/* still need to add help button to explain what to do */
 const Quiz = ({ handler }) => {
-    const [show1, setShow1] = useState("60aae2bc4796232c58097617");
-    const [show2, setShow2] = useState("60aae2bc4796232c58097618");
+    const randomId = () => {
+        const base = '60aae2bc4796232c58097';
+        // random number 617 through c31
+        let new1 = ((Math.random()*1562) + 1559).toString(16);
+        if (new1.includes('.')){
+            new1 = new1.split('.')[0];
+        }
+        return base + new1;
+    }
+
+    const [show1, setShow1] = useState(randomId());
+    const [show2, setShow2] = useState(randomId());
     const [status, setStatus] = useState(0);
     const [anime, setAnime] = useState([]); /* state with anime for results */
-    
+
     const newIds = () => {
-        // generate random show id
-        // 617 through c31
-        
-        let new1 = 0;
-        let new2 = 0;
-        const base = '60aae2bc4796232c58097';
+        let new1 = randomId();
+        let new2 = randomId();
         
         while (new1 === new2){
-            new1 = ((Math.random()*1562) + 1559).toString(16);
-            new2 = ((Math.random()*1562) + 1559).toString(16);
-
-            if (new1.includes('.')){
-                new1 = new1.split('.')[0];
-            }
-            if (new2.includes('.')){
-                new2 = new2.split('.')[0];
-            }
+            new1 = randomId();
+            new2 = randomId();
         }
 
-        setShow1(base + new1);
-        setShow2(base + new2);
+        setShow1(new1);
+        setShow2(new2);
 
         // update status
         setStatus(status + 1);
     }
 
     useEffect(() => {
+        /* if we chose 5 shows, call App's handler to update anime */
         if (status === 5){
             handler(anime);
         }

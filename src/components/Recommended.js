@@ -1,11 +1,25 @@
+import { useEffect, useState } from 'react';
+import findPreferences from '../shared/algorithm';
+
 const Recommended = ({anime}) => {
-    console.log(anime)
+    const BaseUrl = "http://localhost:8081/anime/"; //"https://anime-recommendator.herokuapp.com/anime/"
+    // use anime prop to get info about what we liked
+    const [preferences, setPreferences] = useState({});
+
+    useEffect(() => {
+      setPreferences(findPreferences(anime));
+    }, [anime])
+
     return (
       <div className="Recommended">
         {
-          anime.length === 5 ?
+          preferences.length === 5 ?
             <div>
-              <p>Do algo here</p>
+              {
+                preferences.map((preference) => {
+                  return <p>{preference.Title}</p>
+                })
+              }
             </div>
           :
             <div>
