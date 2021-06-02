@@ -7,8 +7,8 @@ const Item = ({id, handler}) => {
     const [image, setImage] = useState(error);
     const [loading, setLoading] = useState(true);
     const loadingImage = loadingGif;
-    const BaseUrl = "http://localhost:8081/anime/"; //"https://anime-recommendator.herokuapp.com/anime/"
-    const BaseCoverUrl = "http://localhost:8081/cover/"; // "https://anime-recommendator.herokuapp.com/cover/"
+    const BaseUrl = /* "http://localhost:8081/anime/"; // */"https://anime-recommendator.herokuapp.com/anime/"
+    const BaseCoverUrl = /* "http://localhost:8081/cover/"; // */ "https://anime-recommendator.herokuapp.com/cover/"
 
     /* get anime */
     useEffect(() => {
