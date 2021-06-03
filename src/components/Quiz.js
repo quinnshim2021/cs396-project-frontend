@@ -5,13 +5,14 @@ import { useEffect, useState } from "react"
 /* still need to add help button to explain what to do */
 const Quiz = ({ handler }) => {
     const randomId = () => {
-        const base = '60aae2bc4796232c58097';
+        const base = '60b925b9f03c692dbc3bd'; // if > 696
+        const base2 = "60b925b8f03c692dbc3bd"; // if <= 696
         // random number 617 through c31
-        let new1 = ((Math.random()*1562) + 1559).toString(16);
-        if (new1.includes('.')){
-            new1 = new1.split('.')[0];
-        }
-        return base + new1;
+        let new1 = (Math.floor(Math.random()*1562) + 1303).toString(16);
+        
+        let id = parseInt(new1, 16) <= parseInt(696, 16) ? base2 + new1 : base + new1;
+        
+        return id;
     }
 
     const [show1, setShow1] = useState(randomId());

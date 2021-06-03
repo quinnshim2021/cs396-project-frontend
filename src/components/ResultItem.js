@@ -9,30 +9,12 @@ const ResultItem = ({anime}) => {
     const loadingImage = loadingGif;
     const BaseCoverUrl = /* "http://localhost:8081/cover/"; // */ "https://anime-recommendator.herokuapp.com/cover/"
 
-    /* get the image for the anime */
     useEffect(() => {
-        setLoading(true);
-        if (anime && anime.Title){
-            (async() => {
-                const words = anime.Title.replace(/[/]/g, " ").split(" ");
-                let query = "";
-                words.map((word) => query += word + "+")
-                const BASEURL = BaseCoverUrl;
-                fetch(BASEURL + query)
-                    .then(res => res.json())
-                    .then((result) => {
-                        setImage(result);
-                        setLoading(false);
-                    })
-                    .catch(() => {
-                        setImage(error);
-                        setLoading(false);
-                    })
-            })();
-        } else {
-            setImage(error);
-            setLoading(false);
-        }
+        setLoading(true)
+        if (anime && anime.Url){
+            setImage(anime.Url)
+            setLoading(false)
+        } 
     }, [anime])
 
     const formatGenres = (genres) => {
