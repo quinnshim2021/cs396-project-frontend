@@ -55,10 +55,36 @@
   width: 15vw;
 }
 
+.Info {
+  height: 20vw;
+  width: 15vw;
+  display: flex;
+  background-color: #61dafb;
+  flex-direction: column;
+  list-style-type: none;
+  font-size: large;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: large;
+  font-weight: 800;
+}
+
 .Recommended {
   flex: 1;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+  background-color: #A0C1B9;
+}
+
+.RecommendedContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
   flex-direction: column;
   width: 100%;
   background-color: #A0C1B9;

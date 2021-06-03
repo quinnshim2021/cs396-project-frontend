@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import findPreferences from '../shared/algorithm';
+import ResultItem from './ResultItem';
 
 const Recommended = ({anime}) => {
     const BaseUrl = /* "http://localhost:8081/anime/query"; // */"https://anime-recommendator.herokuapp.com/anime/query"
@@ -8,7 +9,9 @@ const Recommended = ({anime}) => {
     const [recommended, setRecommended] = useState([]);
 
     useEffect(() => {
-      setPreferences(findPreferences(anime));
+      if (anime){
+        setPreferences(findPreferences(anime));
+      }
     }, [anime])
 
     useEffect(() => {
@@ -36,12 +39,10 @@ const Recommended = ({anime}) => {
       <div className="Recommended">
         {
           recommended.length > 0 ?
-            <div>
-              {
-                recommended.map((recommend) => {
-                  return <p>{recommend.Title}</p>
-                })
-              }
+            <div className="Recommended">
+              <ResultItem anime={recommended[0]}/>
+              <ResultItem anime={recommended[1]}/>
+              <ResultItem anime={recommended[2]}/>
             </div>
           :
             <div>

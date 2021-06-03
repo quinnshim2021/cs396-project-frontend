@@ -56,7 +56,7 @@ const Quiz = ({ handler }) => {
                     </div>
                 </div>
             :
-            <p>Quiz Complete! See your results below!</p>
+            <p>Quiz Complete! See your recommended anime below!</p>
         }
       </div>
     );
