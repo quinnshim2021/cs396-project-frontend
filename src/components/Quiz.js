@@ -1,6 +1,5 @@
 import Item from "./Item";
-import { useEffect, useState } from "react"
-
+import { useEffect, useState } from "react";
 
 /* still need to add help button to explain what to do */
 const Quiz = ({ handler }) => {
@@ -47,6 +46,7 @@ const Quiz = ({ handler }) => {
       <div className="Quiz">
         {
             status < 5 ? /* let them choose 5 shows */
+            <div className="quizContainer">
                 <div className="Quiz">
                     <div onClick={(e) => newIds(e)}>
                         <Item id={show1} handler={(res) => setAnime(anime.concat(res))} />
@@ -56,6 +56,8 @@ const Quiz = ({ handler }) => {
                         <Item id={show2} handler={(res) => setAnime(anime.concat(res))} />
                     </div>
                 </div>
+                <p className={"status"}>Choice {status+1}/5</p>
+            </div>
             :
             <p><b>Quiz Complete! See your recommended anime below!</b></p>
         }

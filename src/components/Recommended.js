@@ -7,6 +7,7 @@ const Recommended = ({anime}) => {
     // use anime prop to get info about what we liked
     const [preferences, setPreferences] = useState({});
     const [recommended, setRecommended] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       if (anime){
@@ -19,6 +20,7 @@ const Recommended = ({anime}) => {
       if (!preferences || preferences.length === 0 || !preferences.Genres || preferences.Type === "" || preferences.Recommended === ""){
         return;
       }
+      setLoading(true);
           fetch(BaseUrl, {method: "POST", headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -30,6 +32,7 @@ const Recommended = ({anime}) => {
                 let item = result[Math.floor(Math.random()*result.length-1)];
                 res.push(item);
               }
+              setLoading(false);
               setRecommended(res);
             });
         // all of our preferences
@@ -43,6 +46,11 @@ const Recommended = ({anime}) => {
               <ResultItem anime={recommended[0]}/>
               <ResultItem anime={recommended[1]}/>
               <ResultItem anime={recommended[2]}/>
+            </div>
+          :
+          loading ? 
+          <div>
+              <p><b>Loading Results.....</b></p>
             </div>
           :
             <div>
