@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #70A0AF;
+  background-color: #2f2fa2;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  color: #331E38;
 }
 
 .App-link {
@@ -18,21 +17,26 @@
 .Header h3{
   padding: 0;
   margin: 0;
+  text-align:left;
+  margin-left: 50px;
+  display: inline-block;
 }
 
 .Header h6{
+  display: inline-block;
   padding: 0;
-  margin: 0;
+  margin-left: 50px;
 }
 
 .Header {
   flex: .1;
-  display: flex;
+  display: block;
   justify-content: center;
   flex-direction: column;
-  background-color: #706993;
+  background-color: #2f2fa2;
   width: 100%;
-  color: #A0C1B9;
+  color: #F64C72;
+  text-align: left;
 }
 
 .Quiz {
@@ -45,7 +49,6 @@
 }
 
 .Item {
-  border: 1px solid black;
   height: 20vw;
   width: 15vw;
 }
@@ -55,11 +58,19 @@
   width: 15vw;
 }
 
+.Item img:hover {
+      -moz-box-shadow: 0 0 10px #ccc;
+      -webkit-box-shadow: 0 0 10px #ccc;
+      box-shadow: 0 0 10px #ccc;
+      height: 21vw;
+      width: 16vw;
+    }
+
 .Info {
   height: 20vw;
   width: 15vw;
   display: flex;
-  background-color: #61dafb;
+  background-color: #2f2fa2;
   flex-direction: column;
   list-style-type: none;
   font-size: large;
@@ -78,7 +89,7 @@
   justify-content: space-evenly;
   flex-direction: row;
   width: 100%;
-  background-color: #A0C1B9;
+  background-color: #2f2fa2;
 }
 
 .RecommendedContainer {
@@ -87,5 +98,6 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background-color: #A0C1B9;
+  background-color: #2f2fa2;
 }
+

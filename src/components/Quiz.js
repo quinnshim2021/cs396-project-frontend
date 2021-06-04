@@ -51,13 +51,13 @@ const Quiz = ({ handler }) => {
                     <div onClick={(e) => newIds(e)}>
                         <Item id={show1} handler={(res) => setAnime(anime.concat(res))} />
                     </div>
-                    <p>OR</p>
+                    <p><b>OR</b></p>
                     <div onClick={(e) => newIds(e)}>
                         <Item id={show2} handler={(res) => setAnime(anime.concat(res))} />
                     </div>
                 </div>
             :
-            <p>Quiz Complete! See your recommended anime below!</p>
+            <p><b>Quiz Complete! See your recommended anime below!</b></p>
         }
       </div>
     );

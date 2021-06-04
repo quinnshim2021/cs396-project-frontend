@@ -46,7 +46,7 @@ const Recommended = ({anime}) => {
             </div>
           :
             <div>
-              <p>Complete the Quiz to Find Recommended Shows!</p>
+              <p><b>Complete the Quiz to Find Recommended Shows!</b></p>
             </div>
         }
       </div>

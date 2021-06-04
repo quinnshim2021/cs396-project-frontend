@@ -41,14 +41,9 @@ const ResultItem = ({anime}) => {
               :
             hovering ?
                 <div className={"Info"}>
-                    <p><b>Type:</b> {anime.Type + "\n"}</p>
-                    <p><b>Duration:</b> {anime.Duration + "\n"}</p>
-                    <p><b>Number of Episdoes:</b> {anime.Episodes + "\n"}</p>
+                    <p><b>Type:</b> {anime.Type + "\n"}</p>                    
+                    <p><b>Number of Episodes:</b> {anime.Episodes + "\n"}</p>
                     <p><b>Genres:</b> {formatGenres(anime.Genres) + "\n"}</p>
-                    <p><b>Rating:</b> {anime.Rating + "\n"}</p>
-                    <p><b>Status:</b> {anime.Status + "\n"}</p>
-                    <p><b>Air Date:</b> {anime.StartAiring + "\n"}</p>
-                    <p><b>Score:</b> {anime.Score + "/10\n"}</p>
                 </div>
             :
             <img 
